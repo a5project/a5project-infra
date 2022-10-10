@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "a5project"
+    workspaces {
+      name = "learn-tfc-aws"
+    }
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -10,14 +17,14 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-southeast-1"
+  region = var.region_name
 }
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-07651f0c4c315a529"
-  instance_type = "t2.micro"
+  ami           = var.ami_id
+  instance_type = var.instance_type
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
   }
 }
