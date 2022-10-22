@@ -1,11 +1,11 @@
 variable "instance_name" {
   description = "Value of the Name tag for the EC2 instance"
   type        = string
-  default     = "A5 Project App Server"
+  default     = "a5project-app-server"
 }
 
 variable "region_name" {
-  description = "Name of the region where this instance is deployed"
+  description = "Region"
   type        = string
   default     = "ap-southeast-1"
 }
