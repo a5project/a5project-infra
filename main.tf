@@ -20,6 +20,9 @@ provider "aws" {
   region = var.region_name
 }
 
+# Provision EC2 instances
+# -----------------------
+
 resource "aws_instance" "instance_1" {
   ami             = var.ami_id
   instance_type   = var.instance_type
@@ -48,6 +51,9 @@ resource "aws_instance" "instance_2" {
   }
 }
 
+# Provision an S3 bucket
+# ----------------------
+
 resource "aws_s3_bucket" "web-app-bucket" {
   bucket = "a5project-bucket"
   force_destroy = true
@@ -65,6 +71,9 @@ resource "aws_s3_bucket" "web-app-bucket" {
   }
 }
 
+# Provision a VPC network
+# -----------------------
+
 data "aws_vpc" "default_vpc" {
   default = true
 }
@@ -72,6 +81,9 @@ data "aws_vpc" "default_vpc" {
 data "aws_subnet_ids" "default_subnet" {
   vpc_id = data.aws_vpc.default_vpc.id
 }
+
+# Provision a Security Group for accessing EC2 Instances
+# ------------------------------------------------------
 
 resource "aws_security_group" "instances" {
   name = "instance-security-group"
@@ -85,6 +97,9 @@ resource "aws_security_group_rule" "allow_http_inbound" {
   protocol = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
+
+# Provision an Application Load Balancer
+# --------------------------------------
 
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.load_balancer.arn
@@ -177,6 +192,9 @@ resource "aws_lb" "load_balancer" {
   security_groups    = [aws_security_group.alb.id]
 }
 
+# Provision a Route53 Hosted Zone
+# -------------------------------
+
 resource "aws_route53_zone" "primary" {
   name = "a5projectdevops.com"
 }
@@ -193,14 +211,17 @@ resource "aws_route53_record" "root" {
   }
 }
 
+# Provision a database
+# --------------------
+
 resource "aws_db_instance" "db_instance" {
-  allocated_storage = 20
-  storage_type = "standard"
-  engine = "mariadb"
-  engine_version = "10.3.36"
-  instance_class = "db.t3.micro"
-  name = "mydb"
-  username = "foo"
-  password = "foobarbaz"
+  allocated_storage = var.db_allocated_storage
+  storage_type = var.db_storage_type
+  engine = var.db_engine
+  engine_version = var.db_engine_version
+  instance_class = var.db_instance_class
+  name = var.db_name
+  username = var.db_user
+  password = var.db_pass
   skip_final_snapshot = true
 }
