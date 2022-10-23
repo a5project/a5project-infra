@@ -35,6 +35,10 @@ jobs:
       - name: Terraform Format
         id: fmt
         run: terraform fmt -check
+
+      - name: Terraform Login
+        id: login
+        run: terraform login
       
       - name: Terraform Init
         id: init
