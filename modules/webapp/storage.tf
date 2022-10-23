@@ -1,7 +1,7 @@
 # Provision an S3 storage bucket
 # ------------------------------
 
-resource "aws_s3_bucket" "web-app-bucket" {
+resource "aws_s3_bucket" "webapp_bucket" {
   bucket = var.bucket_name
   force_destroy = true
 

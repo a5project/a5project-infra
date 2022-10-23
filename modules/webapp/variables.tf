@@ -7,7 +7,7 @@ variable "environment" {
 variable "app_name" {
   description = "Application name"
   type        = string
-  default     = "web-app"
+  default     = "webapp"
 }
 
 # DNS settings
@@ -16,7 +16,7 @@ variable "app_name" {
 variable "domain" {
   description = "Domain name"
   type        = string
-  default     = "a5projectdevops.com"
+  default     = "webapp-a5project.com"
 }
 
 # EC2 settings
@@ -76,13 +76,13 @@ variable "db_storage_type" {
 variable "db_name" {
   description = "Name of the database"
   type        = string
-  default     = "mydb"
+  default     = "webappdb"
 }
 
 variable "db_user" {
   description = "Username to access the database"
   type        = string
-  default     = "foo"
+  default     = "webappdbuser"
 }
 
 variable "db_pass" {
@@ -97,5 +97,5 @@ variable "db_pass" {
 variable "bucket_name" {
   description = "S3 storage bucket name"
   type        = string
-  default     = "a5project-bucket"
+  default     = "webapp-bucket"
 }

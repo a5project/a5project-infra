@@ -16,7 +16,7 @@ variable "region_name" {
   default     = "ap-southeast-1"
 }
 
-variable "db_pass" {
+variable "DB_PASS" {
   description = "Password to access the database"
   type        = string
   sensitive   = true

@@ -5,15 +5,18 @@ data "aws_vpc" "default_vpc" {
   default = true
 }
 
-data "aws_subnet_ids" "default_subnet" {
-  vpc_id = data.aws_vpc.default_vpc.id
+data "aws_subnets" "default_subnet" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default_vpc.id]
+  }
 }
 
 # Provision a Security Group for accessing EC2 Instances
 # ------------------------------------------------------
 
 resource "aws_security_group" "instances" {
-  name = "instance-security-group"
+  name = "webapp-instance-sg"
 }
 
 resource "aws_security_group_rule" "allow_http_inbound" {
@@ -46,7 +49,7 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_lb_target_group" "instances" {
-  name     = "example-target-group"
+  name     = "webapp-alb-tg"
   port     = 8080
   protocol = "HTTP"
   vpc_id   = data.aws_vpc.default_vpc.id
@@ -113,8 +116,8 @@ resource "aws_security_group_rule" "allow_alb_http_outboud" {
 }
 
 resource "aws_lb" "load_balancer" {
-  name               = "web-app-lb"
+  name               = "webapp-alb"
   load_balancer_type = "application"
-  subnets            = data.aws_subnet_ids.default_subnet.ids
+  subnets            = data.aws_subnets.default_subnet.ids
   security_groups    = [aws_security_group.alb.id]
 }

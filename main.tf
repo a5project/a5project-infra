@@ -20,16 +20,16 @@ provider "aws" {
   region = var.region_name
 }
 
-module "web-app" {
-  source = "./modules/web-app"
+module "webapp" {
+  source = "./modules/webapp"
 
   # Input variables
   environment = "development"
-  app_name = "web-app"
-  domain = "a5projectdevops.com"
+  app_name = "webapp"
+  domain = "webapp-a5project.com"
   instance_type = "t2.micro"
-  db_name = "mydb"
-  db_user = "foo"
-  db_pass = var.db_pass
-  bucket_name = "a5project-bucket"
+  db_name = "webappdb"
+  db_user = "webappdbuser"
+  db_pass = var.DB_PASS
+  bucket_name = "webapp-public-bucket"
 }
