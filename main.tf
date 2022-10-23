@@ -17,19 +17,19 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region_name
+  region = var.REGION_NAME
 }
 
 module "webapp" {
   source = "./modules/webapp"
 
   # Input variables
-  environment = "development"
-  app_name = "webapp"
-  domain = "webapp-a5project.com"
-  instance_type = "t2.micro"
-  db_name = "webappdb"
-  db_user = "webappdbuser"
-  db_pass = var.DB_PASS
-  bucket_name = "webapp-public-bucket"
+  environment   = var.ENVIRONMENT
+  app_name      = var.APP_NAME
+  domain        = var.DOMAIN
+  instance_type = var.INSTANCE_TYPE
+  db_name       = var.DB_NAME
+  db_user       = var.DB_USER
+  db_pass       = var.DB_PASS
+  bucket_name   = var.BUCKET_NAME
 }
