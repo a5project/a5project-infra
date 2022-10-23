@@ -1,7 +1,7 @@
 terraform {
   cloud {
     organization = "a5project"
-    
+
     workspaces {
       name = "a5project-api"
     }
