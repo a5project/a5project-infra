@@ -94,7 +94,7 @@ resource "aws_lb_listener_rule" "instances" {
 }
 
 resource "aws_security_group" "alb" {
-  name = "alb-security-group"
+  name = "webapp-alb-sg"
 }
 
 resource "aws_security_group_rule" "allow_alb_http_inboud" {

@@ -1,8 +1,9 @@
 terraform {
   cloud {
     organization = "a5project"
+    
     workspaces {
-      name = "learn-tfc-aws"
+      name = "a5project-api"
     }
   }
 
@@ -25,11 +26,11 @@ module "webapp" {
 
   # Input variables
   environment   = var.ENVIRONMENT
-  app_name      = var.APP_NAME
-  domain        = var.DOMAIN
+  app_name      = "${var.APP_NAME}-${var.ENVIRONMENT}"
+  domain        = "${var.ENVIRONMENT}-${var.DOMAIN}"
   instance_type = var.INSTANCE_TYPE
-  db_name       = var.DB_NAME
-  db_user       = var.DB_USER
+  db_name       = "${var.APP_NAME}db${var.ENVIRONMENT}"
+  db_user       = "${var.APP_NAME}dbuser${var.ENVIRONMENT}"
   db_pass       = var.DB_PASS
-  bucket_name   = var.BUCKET_NAME
+  bucket_name   = "${var.APP_NAME}-public-${var.ENVIRONMENT}-20220101"
 }
