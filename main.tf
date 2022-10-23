@@ -32,5 +32,5 @@ module "webapp" {
   db_name       = "${var.APP_NAME}db${var.ENVIRONMENT}"
   db_user       = "${var.APP_NAME}dbuser${var.ENVIRONMENT}"
   db_pass       = var.DB_PASS
-  bucket_name   = "${var.APP_NAME}-public-${var.ENVIRONMENT}-20220101"
+  bucket_name   = "${var.APP_NAME}-public-${var.ENVIRONMENT}-20220102"
 }
