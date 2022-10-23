@@ -97,5 +97,5 @@ variable "db_pass" {
 variable "bucket_name" {
   description = "S3 storage bucket name"
   type        = string
-  default     = "webapp-bucket"
+  default     = "webapp-public-bucket"
 }
