@@ -1,8 +1,8 @@
-# Provision an S3 bucket
-# ----------------------
+# Provision an S3 storage bucket
+# ------------------------------
 
 resource "aws_s3_bucket" "web-app-bucket" {
-  bucket = "a5project-bucket"
+  bucket = var.bucket_name
   force_destroy = true
 
   versioning {

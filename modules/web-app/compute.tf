@@ -11,7 +11,7 @@ resource "aws_instance" "instance_1" {
                     python3 -m http.server 8080 &
                     EOF
   tags = {
-    Name = "instance-1"
+    Name = "webapp-instance-1"
   }
 }
 
@@ -25,6 +25,6 @@ resource "aws_instance" "instance_2" {
                     python3 -m http.server 8080 &
                     EOF
   tags = {
-    Name = "instance-2"
+    Name = "webapp-instance-2"
   }
 }
