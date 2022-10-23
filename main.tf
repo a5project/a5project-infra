@@ -3,7 +3,7 @@ terraform {
     organization = "a5project"
 
     workspaces {
-      name = "a5project-api"
+      name = "github-actions"
     }
   }
 
