@@ -31,7 +31,7 @@ variable "instance_name" {
 variable "ami_id" {
   description = "Amazon Machine Image ID"
   type        = string
-  default     = "ami-07651f0c4c315a529"
+  default     = "ami-07651f0c4c315a529" # Ubuntu Server 22.04 LTS
 }
 
 variable "instance_type" {
